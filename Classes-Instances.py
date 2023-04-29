@@ -8,15 +8,32 @@ class Personel:
         self.isim = isim.title()
         self.soyisim = soyisim
         self.maas = maas
-        self.email = f"{isim.lower()}.{soyisim.lower()}@firmam.com"
+        # self.email = f"{isim.lower()}.{soyisim.lower()}@firmam.com"
         Personel.personel_sayisi += 1
         #print(f"Yeni Personel Tanımlandı: {isim} {soyisim}")
+    
+    @property
+    def email(self):
+        return f"{self.isim.lower()}{self.soyisim.lower()}@firmam.com"
 
+    @property
     def tam_isim(self):
         return f"{self.isim} {self.soyisim}"
 
     def zam_uygula(self):
         self.maas = int(self.maas * self.zam_orani)
+    
+    @tam_isim.setter
+    def tam_isim(self, ad):
+        isim, soyisim = ad.split(' ')
+        self.isim = isim
+        self.soyisim = soyisim
+
+    @tam_isim.deleter
+    def tam_isim(self):
+        print("Değişkenler silindi")
+        self.isim = None
+        self.soyisim = None
 
     @classmethod
     def zam_oranini_belirle(cls, oran):
@@ -47,6 +64,7 @@ class Personel:
     
     def __len__(self):
         return self.tam_isim().__len__()
+    
 
 
 # Method Resolution Order
@@ -92,14 +110,23 @@ mdr_2s = Mudur('John', 'Snow', 70000)
 personel_1 = Personel(isim="Fatih", soyisim="Tarim", maas=12000)
 personel_2 = Personel("Will","Smith",15000)
 
+
+print(personel_1.email)
+personel_1.tam_isim = "Burak Tarim"
+print(personel_1.tam_isim)
+
+del personel_1.tam_isim
+print(personel_1.isim)
+
+
+
+
+
+
 #personel_1.__add__(personel_2) ==  personel_1 + personel_2
 
-print(personel_1 + personel_2)
-print(len(personel_1))
-
-
-
-
+# print(personel_1 + personel_2)
+# print(len(personel_1))
 
 
 
