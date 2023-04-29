@@ -35,9 +35,21 @@ class Personel:
             return "Hafta sonu"
         else:
             return "Hafta içi"
+    
+    def __repr__(self):
+        return f"Personel('{self.isim}','{self.soyisim}','{self.email}')"
+
+    def __str__(self):
+        return f"{self.tam_isim()} | {self.email}"
+
+    def __add__(self, other):
+        return self.maas + other.maas
+    
+    def __len__(self):
+        return self.tam_isim().__len__()
+
 
 # Method Resolution Order
-
 
 class Yazilimci(Personel):
     zam_orani = 1.1
@@ -77,12 +89,36 @@ yazilimci_2 = Yazilimci("Mary", "Smith", 15000, "Java")
 mdr_1 = Mudur('John', 'Wick', 70000, [yazilimci_1])
 mdr_2s = Mudur('John', 'Snow', 70000)
 
+personel_1 = Personel(isim="Fatih", soyisim="Tarim", maas=12000)
+personel_2 = Personel("Will","Smith",15000)
 
-#isinstance()
-print(isinstance(yazilimci_1, Personel))
+#personel_1.__add__(personel_2) ==  personel_1 + personel_2
 
-#issubclass()
-print(issubclass(Yazilimci, Personel))
+print(personel_1 + personel_2)
+print(len(personel_1))
+
+
+
+
+
+
+
+# print(str(personel_1))
+# print(repr(personel_1))
+# #print(help(personel_1))
+# print(personel_1.__str__())
+# print(int.__add__(2,3))
+
+
+
+
+
+
+# #isinstance()
+# print(isinstance(yazilimci_1, Personel))
+
+# #issubclass()
+# print(issubclass(Yazilimci, Personel))
 
 
 
